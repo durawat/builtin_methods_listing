@@ -48,16 +48,15 @@ def format_builtins_cheatsheet() -> str:
     lines: List[str] = []
 
     for letter, names in grouped.items():
-        lines.append("""
-{}""".format('=' * 80))
+        lines.append(f"\n{'=' * 80}")
         lines.append(letter)
-        lines.append("""{}""".format('=' * 80))
+        lines.append(f"{'=' * 80}")
 
         # Format in 4 columns with a stable column width
         col_width = 20
         for i in range(0, len(names), 4):
             row = names[i:i + 4]
-            formatted_row = "  ".join(name.ljust(col_width) for name in row)
+            formatted_row = "  ".join(f"{name:<{col_width}}" for name in row)
             lines.append(formatted_row)
 
     return "\n".join(lines)
@@ -78,7 +77,7 @@ def format_builtins_cheatsheet_markdown() -> str:
         col_width = 20
         for i in range(0, len(names), 4):
             row = names[i:i + 4]
-            lines.append("  ".join(name.ljust(col_width) for name in row))
+            lines.append("  ".join(f"{name:<{col_width}}" for name in row))
         lines.append("```")
 
     return "\n".join(lines)
@@ -123,7 +122,7 @@ def write_cheatsheet(path: Union[Path, str], names: Optional[Iterable[str]] = No
                 col_width = 20
                 for i in range(0, len(vals), 4):
                     row = vals[i:i + 4]
-                    lines.append("  ".join(name.ljust(col_width) for name in row))
+                    lines.append("  ".join(f"{name:<{col_width}}" for name in row))
 
             if include_total:
                 lines.append(f"\nTotal builtins: {len([n for n in names if not n.startswith('_')])}")
