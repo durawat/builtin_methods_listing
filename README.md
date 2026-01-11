@@ -15,17 +15,13 @@ pip install -e .[dev]
 
 Run the CLI
 
-The package exposes a small CLI with two subcommands:
+The package exposes a small CLI with a subcommand:
 
-- `greet [NAME]` — print a greeting (defaults to "World")
 - `cheatsheet` — generate a builtins cheatsheet and write it to a file
 
 Examples (installed script):
 
 ```bash
-# greet Alice
-myproj greet Alice
-
 # generate a markdown cheatsheet into docs/
 myproj cheatsheet -o docs/builtins_cheatsheet.md -f markdown
 ```
@@ -33,19 +29,8 @@ myproj cheatsheet -o docs/builtins_cheatsheet.md -f markdown
 Examples (module run):
 
 ```bash
-# greet (module)
-python -m myproj.cli greet Alice
-
 # generate cheatsheet (module)
 python -m myproj.cli cheatsheet -o builtins_cli.txt -f text
-```
-
-Or use the module directly:
-
-```python
-from myproj.core import greet
-
-print(greet("Alice"))
 ```
 
 ## Development

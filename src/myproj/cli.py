@@ -1,7 +1,6 @@
 """Command-line interface for myproj.
 
-Provides two subcommands:
-- greet NAME     -> prints a greeting
+Provides a subcommand:
 - cheatsheet     -> writes the builtins cheatsheet to a file
 """
 
@@ -11,7 +10,6 @@ import argparse
 from pathlib import Path
 from typing import Optional, List
 
-from myproj.core import greet
 from myproj.builtins_cheatsheet import write_cheatsheet
 
 # Mapping of format -> extension
@@ -26,18 +24,11 @@ def main(argv: Optional[List[str]] = None) -> int:
     parser = argparse.ArgumentParser(prog="myproj")
     sub = parser.add_subparsers(dest="cmd", required=True)
 
-    p_greet = sub.add_parser("greet", help="Print a greeting")
-    p_greet.add_argument("name", nargs="?", default="World", help="Name to greet")
-
     p_cheat = sub.add_parser("cheatsheet", help="Write builtins cheatsheet to a file")
     p_cheat.add_argument("-o", "--out", default="builtins_cheatsheet.txt", help="Output file path")
     p_cheat.add_argument("-f", "--format", choices=["text", "markdown", "json"], default="text", help="Output format")
 
     args = parser.parse_args(argv)
-
-    if args.cmd == "greet":
-        print(greet(args.name))
-        return 0
 
     if args.cmd == "cheatsheet":
         # Ensure the output filename extension matches the requested format
