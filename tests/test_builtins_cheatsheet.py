@@ -1,6 +1,5 @@
 """Tests for myproj.builtins_cheatsheet module."""
 
-import pytest
 from myproj.builtins_cheatsheet import (
     get_builtins_list,
     group_builtins_by_initial,
